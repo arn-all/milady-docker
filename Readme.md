@@ -20,13 +20,13 @@ This command will compile the MILADY code during the image build process.
 3. Run the container with the current directory mounted as a volume:
 
 ```bash
-docker run --rm -v "$(pwd):/workspace" milady
+docker run --rm -v "$(pwd):/workspace" aallera/milady
 ```
 
 Optionally, additional options to `mpirun` such as the number of processors (default is `-np 4`) can be passed as:
 
 ```bash
-docker run --rm -v "$(pwd):/workspace" milady -np 8
+docker run --rm -v "$(pwd):/workspace" aallera/milady -np 8
 ```
 
 ## Push the Docker Image to Docker Hub
