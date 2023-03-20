@@ -23,6 +23,11 @@ This command will compile the MILADY code during the image build process.
 docker run --rm -v "$(pwd):/workspace" milady
 ```
 
+Optionally, additional options to `mpirun` such as the number of processors can be passed as:
+
+```bash
+docker run --rm -v "$(pwd):/workspace" milady -np 8
+```
 
 ## Push the Docker Image to Docker Hub
 
