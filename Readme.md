@@ -3,6 +3,7 @@
 This guide provides a summary of the steps to create, share, and use a custom pre-built Docker image for the MILADY code.
 
 ## Build the Docker Image
+
 1. Clone the git repository 
 
 ```bash 
@@ -59,13 +60,13 @@ Other people can now pull and run your custom pre-built image using the followin
 1. Pull the image from Docker Hub:
 
 ```bash
-docker pull YOUR_DOCKERHUB_USERNAME/milady:latest
+docker pull aallera/milady:latest 
 ```
 
 2. Run the container with the current directory mounted as a volume without compiling the code:
 
 ```bash
-docker run --rm -v "$(pwd):/workspace" milady
+docker run --rm -v "$(pwd):/workspace" aallera/milady
 ```
 
 This will allow them to run `milady_main.exe` inside the container with the current directory on the host system mounted as the `/workspace` directory.
