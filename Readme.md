@@ -23,7 +23,7 @@ This command will compile the MILADY code during the image build process.
 docker run --rm -v "$(pwd):/workspace" milady
 ```
 
-Optionally, additional options to `mpirun` such as the number of processors can be passed as:
+Optionally, additional options to `mpirun` such as the number of processors (default is `-np 4`) can be passed as:
 
 ```bash
 docker run --rm -v "$(pwd):/workspace" milady -np 8
