@@ -71,28 +71,3 @@ docker run --rm -v "$(pwd):/workspace" aallera/milady
 ```
 
 This will allow them to run `milady_main.exe` inside the container with the current directory on the host system mounted as the `/workspace` directory.
-
-## Debugging MILADY in Docker
-
-Interactive mode in Docker allows you to run a container and attach to it, so you can interact with the container's running processes and execute commands inside the container. This is useful for debugging, testing, and exploring the container environment.
-
-To run a Docker container in interactive mode, you use the -it flag along with the docker run command. The -i flag stands for "interactive" and the -t flag stands for "pseudo-tty," which allocates a pseudo-TTY session to the container.
-
-Here's an example of running the MILADY Docker container in interactive mode:
-
-```
-docker run -it --rm -v "$(pwd):/workspace" YOUR_DOCKERHUB_USERNAME/milady:latest /bin/bash
-```
-
-In this command:
-
-    -it: Enables interactive mode with a pseudo-TTY session.
-
-    --rm: Removes the container automatically when it exits.
-
-    -v "$(pwd):/workspace": Mounts the current directory on the host system as the /workspace directory inside the container.
-    YOUR_DOCKERHUB_USERNAME/milady:latest: The Docker image to run.
-
-    /bin/bash: The command to run inside the container, in this case, it starts a new bash shell.
-
-Once you run this command, you will be attached to the container's bash shell, and you can interact with the container by executing commands inside it. To exit the interactive session, simply type exit or press Ctrl + D.
