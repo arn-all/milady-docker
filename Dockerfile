@@ -10,27 +10,6 @@ RUN apt-get update && \
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# RUN wget https://download.open-mpi.org/release/open-mpi/v4.1/openmpi-4.1.4.tar.bz2 && \
-#     mkdir -p ${HOME}/software/openmpi/src && \
-#     tar -xf openmpi-4.1.4.tar.bz2 --directory=${HOME}/software/openmpi/src --strip-components 1 && \
-#     cd ${HOME}/software/openmpi/src && \
-
-#     # 3. build openmpi
-#     # source /opt/intel/oneapi/setvars.sh && \
-
-#     #which ifort && \
-#     # if not available :
-#     export PATH=/opt/intel/oneapi/compiler/2022.1.0/linux/bin/intel64:/opt/intel/oneapi/compiler/2022.1.0/linux/bin:${PATH} && \
-
-#     ./configure --prefix=${HOME}/software/openmpi/install CC=gcc CXX=g++ F77=ifort FC=ifort --enable-mpi-cxx
-
-# RUN cd ${HOME}/software/openmpi/src && \ 
-#     make all install -j8
-
-# ENV PATH=$PATH:$HOME/.local/bin:$HOME/software/openmpi-4.1.4/install/bin \
-#     LD_LIBRARY_PATH=$HOME/software/openmpi-4.1.4/install/lib/:/opt/intel/oneapi/compiler/2022.1.0/linux/compiler/lib/intel64_lin/:/opt/intel/oneapi/mkl/2022.1.0/lib/intel64:${LD_LIBRARY_PATH}
-
-
 # Set the working directory for the MILADY repository
 WORKDIR /MLD
 
