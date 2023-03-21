@@ -40,6 +40,43 @@ Run an interactive shell in the container
 
    docker run -it --rm -v "$(pwd):/workspace" aallera/milady shell
 
+On Irene Joliot-Curie
+~~~~~~~~~~~~~~~~~~~~~
+
+Locally (takes a long time):
+
+.. code:: bash
+    
+   docker save milady:<tag> | gzip > milady_<tag>.tar.gz
+
+On Irene:
+
+.. code:: bash
+
+   gzip -d milady_latest.tar.gz
+   pcocc image import docker-archive:milady_latest.tar milady
+
+Interactive use:
+
+.. code:: bash
+   
+   # (optional) ccc_mprun  -p skylake -m scratch,work -s
+   pcocc run --mount "$(pwd):/workspace" -s -I milady -- -np 16
+
+Submit as a job:
+
+.. code:: bash
+
+
+   #!/bin/bash
+   #MSUB -n 4
+   #MSUB -c 8
+   #MSUB -q skylake
+   #MSUB -T 600
+   #MSUB -A <your submission group>
+   pcocc run -n ${BRIDGE_MSUB_NPROC}  -I my_docker_image [arg1, ...]
+
+   
 Build the Docker Image
 ----------------------
 
