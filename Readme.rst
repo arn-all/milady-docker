@@ -76,6 +76,33 @@ Submit as a job:
    #MSUB -A <your submission group>
    pcocc run -n ${BRIDGE_MSUB_NPROC}  -I my_docker_image [arg1, ...]
 
+On Jean-Zay (IDRIS) using Singularity
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. Start a pre/post session to access a large RAM node (singularity build takes more ram than the standard 5 Go).
+
+.. code:: bash
+
+   srun --pty --nodes=1 -A yxs@cpu --ntasks-per-node=1 --cpus-per-task=10 --partition=prepost --hint=nomultithread --time=01:00:00 bash
+
+2. Build singularity image (.sif)
+
+.. code:: bash
+
+   singularity build milady.sif docker://aallera/milady:1.0.1
+
+3. Add to allowed directory
+
+.. code:: bash
+
+   idrcontmgr cp milady.sif
+
+4. Start a shell, with access to $WORK. Other directories are read-only.
+
+.. code:: bash
+
+   singularity shell $SINGULARITY_ALLOWED_DIR/milady.sif --bind $WORK/:/MLD/work
+   
    
 Build the Docker Image
 ----------------------
