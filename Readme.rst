@@ -1,8 +1,16 @@
 MILADY Docker
 =============
 
-Using Milady
-************
+User guide
+**********
+
+Milady users can run the code without compilation thanks to the pre-built image we provide.
+Depending on your environment (workstation, cluster, supercomputer), you will have to rely on 
+different tools for running the image: 
+
+- Docker Engine (on workstations) 
+- Singularity (on shared resources, for rootless execution)
+- pcocc (CEA alternative to Singularity, available on TGCC resources)
 
 Locally, using Docker
 ---------------------
@@ -51,7 +59,7 @@ Locally (takes a long time):
     
    docker save milady:<tag> | gzip > milady_<tag>.tar.gz
 
-On Irene:
+On Irene (after transfering the created file):
 
 .. code:: bash
 
@@ -106,8 +114,8 @@ On Jean-Zay (IDRIS) using Singularity
    singularity shell $SINGULARITY_ALLOWED_DIR/milady.sif --bind $WORK/:/MLD/work
    
    
-Build the Docker Image and push to Docker hub
-*********************************************
+Developer: Build the Docker Image
+*********************************
 
 Build the image
 ---------------
