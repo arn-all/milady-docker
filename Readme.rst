@@ -1,11 +1,13 @@
 MILADY Docker
 =============
 
-Pull and Run the Docker Image
------------------------------
+Using Milady
+************
 
-Other people can now pull and run your custom pre-built image using the
-following commands:
+Locally, using Docker
+---------------------
+
+You can pull and run the pre-built image using the following commands:
 
 1. Pull the image from Docker Hub:
 
@@ -40,8 +42,8 @@ Run an interactive shell in the container
 
    docker run -it --rm -v "$(pwd):/workspace" aallera/milady shell
 
-On Irene Joliot-Curie
-~~~~~~~~~~~~~~~~~~~~~
+On Irene Joliot-Curie (CEA-TGCC) using pcocc
+--------------------------------------------
 
 Locally (takes a long time):
 
@@ -77,7 +79,7 @@ Submit as a job:
    pcocc run -n ${BRIDGE_MSUB_NPROC}  -I my_docker_image [arg1, ...]
 
 On Jean-Zay (IDRIS) using Singularity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 1. Start a pre/post session to access a large RAM node (singularity build takes more ram than the standard 5 Go).
 
@@ -104,16 +106,22 @@ On Jean-Zay (IDRIS) using Singularity
    singularity shell $SINGULARITY_ALLOWED_DIR/milady.sif --bind $WORK/:/MLD/work
    
    
-Build the Docker Image
-----------------------
+Build the Docker Image and push to Docker hub
+*********************************************
 
-1. Clone the git repository
+Build the image
+---------------
+
+1. Clone the current repository
+
+
+2. Clone the milady repository inside it
 
 .. code:: bash
 
    ./clone_milady.sh
 
-2. Build the Docker image using the following command:
+3. Build the Docker image using the following command:
 
 .. code:: bash
 
