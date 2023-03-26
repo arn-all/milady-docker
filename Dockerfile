@@ -1,12 +1,12 @@
 # Use the oneAPI HPC toolkit as the base image
-FROM intel/oneapi-hpckit:latest
+FROM intel/oneapi-hpckit:2023.0.0-devel-ubuntu22.04
 
 
 SHELL ["/bin/bash", "-c"]
 
 # Install the necessary prerequisites
 RUN apt-get update && \
-    apt-get install -y cmake gfortran gcc python3
+    apt-get install -y cmake gcc gfortran python3 python3-pip 
 
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
