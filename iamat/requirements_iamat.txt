@@ -1,0 +1,6 @@
+torch
+torchvision
+torch-geometric
+git+https://github.com/pyg-team/pytorch_geometric.git
+rdkit
+networkx
