@@ -1,6 +1,25 @@
+########### USAGE ##########
+# Run milady in current directory
+#
+# with 4 cpus (default)
+#docker run -it --rm -v "$(pwd):/workspace" milady 
+#
+# with 8 cpus (-np 8)
+#docker run -it --rm -v "$(pwd):/workspace" milady -np 8
+
+# Run jupyter in the container:
+#
+# docker run -it -p 8888:8888  milady shell
+#
+# (or, to expose the current directory):
+# docker run -it -p 8888:8888  -v "$(pwd):/workspace" milady shell 
+#
+# To start jupyter:
+# notebook
+############################
+
 # Use the oneAPI HPC toolkit as the base image
 FROM intel/oneapi-hpckit:2023.0.0-devel-ubuntu22.04
-
 
 SHELL ["/bin/bash", "-c"]
 
@@ -41,13 +60,25 @@ RUN source ${MLD_SRCDIR}/scripts/compile_milady.bash && \
     f_compile_milady && \
     make -j 4 
 
+# Install python dependencies
+COPY requirements.txt /MLD/requirements.txt
+RUN pip install -r /MLD/requirements.txt --no-cache-dir
 
 # Set the default working directory for the container to access host files
 WORKDIR /workspace
 
-COPY run.sh /usr/local/bin/run.sh
+# Expose port 8888 for jupyter
+EXPOSE 8888
 
-# Set the entry point for the Docker container to the run_milady.sh script
+# Provide executables
+COPY run.sh     /usr/local/bin/run.sh
+COPY milady.sh  /usr/local/bin/milady
+COPY jupyter.sh /usr/local/bin/notebook
+
+# Set the entry point for the Docker container to the run.sh script
+# Default : start milady here
+# possible argument(s): 
+#         shell : start a shell in the container
 ENTRYPOINT ["/usr/local/bin/run.sh"]
 
 # Set the default value for the -np option
